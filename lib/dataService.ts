@@ -45,14 +45,14 @@ export async function getModuleBySlug(slug: string) {
         category: module.category,
         lessons: module.lessons,
         highlight: `${module.quizzes.length} preguntas`,
-        details: moduleDetails[slug] ?? null,
+        details: moduleDetails[slug as keyof typeof moduleDetails] ?? null,
       };
     } catch {
-      return { ...recommendedModules.find((item) => item.slug === slug), details: moduleDetails[slug] ?? null } || null;
+      return { ...recommendedModules.find((item) => item.slug === slug), details: moduleDetails[slug as keyof typeof moduleDetails] ?? null } || null;
     }
   }
 
-  return { ...recommendedModules.find((item) => item.slug === slug), details: moduleDetails[slug] ?? null } || null;
+  return { ...recommendedModules.find((item) => item.slug === slug), details: moduleDetails[slug as keyof typeof moduleDetails] ?? null } || null;
 }
 
 export async function getSpecies() {
